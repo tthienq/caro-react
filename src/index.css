@@ -17,7 +17,7 @@ ol, ul {
   margin-bottom: 10px;
   font-weight: bold;
   font-size: large;
-  margin-left: 20px;
+
 }
 
 .button{
@@ -25,12 +25,12 @@ ol, ul {
   background:rgb(93, 196, 133);
 }
 .menu{
-  margin: 10px 20px;
+  margin: 10px 10px 10px 0px;
 }
 
 input{
-  margin: auto 10px;
-  width: 40px;
+  margin-right: 10px;
+  width: 30px;
 }
 
 .square {

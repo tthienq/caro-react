@@ -86,7 +86,7 @@ const getLocation = (move, col) => {
 };
 
 function Game() {
-  const [sizeBoard, setSizeBoard] = useState({ row: 5, col: 5 });
+  const [sizeBoard, setSizeBoard] = useState({ row: 10, col: 10 });
   const [historyState, setHistoryState] = useState([
     {
       squares: Array(sizeBoard.row * sizeBoard.col).fill(null),
@@ -119,7 +119,7 @@ function Game() {
     setXIsNext(!xIsNext);
   }
 
-  function handleRowChange(e) {
+  function rowHandleChange(e) {
     const size = parseInt(e);
     setSizeBoard({ row: size, col: sizeBoard.col });
     setHistoryState([
@@ -131,7 +131,7 @@ function Game() {
     setXIsNext(true);
   }
 
-  function handleColChange(e) {
+  function colHandleChange(e) {
     const size = parseInt(e);
     setSizeBoard({ row: sizeBoard.row, col: size });
     setHistoryState([
@@ -199,16 +199,7 @@ function Game() {
   }
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board
-          row={sizeBoard.row}
-          col={sizeBoard.col}
-          winnerSquares={winnerLine}
-          squares={current.squares}
-          onClick={(location) => handleClick(location)}
-        />
-      </div>
+    <div className="game">     
       <div className="game-info">
         <div className="status">{status}</div>
         <div>
@@ -221,7 +212,7 @@ function Game() {
             value={sizeBoard.row}
             min="5"
             max="20"
-            onChange={(e) => handleRowChange(e.target.value)}
+            onChange={(e) => rowHandleChange(e.target.value)}
           />
           <label>Column: </label>
           <input
@@ -229,14 +220,22 @@ function Game() {
             value={sizeBoard.col}
             min="5"
             max="20"
-            onChange={(e) => handleColChange(e.target.value)}
+            onChange={(e) => colHandleChange(e.target.value)}
           />
         </div>
         <button className="menu" onClick={() => sortMoves()}>
           Sort moves
         </button>
-
         <ol>{moves}</ol>
+      </div>
+      <div className="game-board">
+        <Board
+          row={sizeBoard.row}
+          col={sizeBoard.col}
+          winnerSquares={winnerLine}
+          squares={current.squares}
+          onClick={(location) => handleClick(location)}
+        />
       </div>
     </div>
   );
